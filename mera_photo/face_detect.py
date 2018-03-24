@@ -2,8 +2,7 @@
 face detection functions
 """
 import face_recognition
-import cv2
-import file_handler
+from .file_handler import get_directories,get_train_image,get_images
 from shutil import copyfile
 
 
@@ -22,21 +21,20 @@ def make_encodings(faces):
 
 def sort_faces(path):
     count = 0
-    to_find = file_handler.get_directories(path)
+    to_find = get_directories(path)
     faces = []
     for id in range(len(to_find)):
         faces.append(face_recognition.load_image_file(
-            file_handler.get_train_image(path + "/" + to_find[id])))
+            get_train_image(path + "/" + to_find[id])))
     print("No. of faces to detect: ", len(to_find))
     for i in range(len(to_find)):
         print(path + "/" + to_find[i])
 
-    images = file_handler.get_images(path)
+    images = get_images(path)
     print("Number of images loaded: ", len(images))
     known_faces = make_encodings(faces)
 
     for image in images:
-        # print(image)
         count = count + 1
         print("Processed: ", count ,image)
         unknown_image = face_recognition.load_image_file(image)
@@ -48,17 +46,18 @@ def sort_faces(path):
             try:
                 results = face_recognition.compare_faces(known_faces, encoding)
                 if True in results:
-                    c = 0
+                    c = -1
                     for result in results:
+                        c = c + 1
                         if result == True:
                             name = to_find[c]
                             ind = image.rfind('\\')
                             copyfile(image, "test_images/" + name + '/' + image[ind + 1::])
                             print("FILE COPIED")
-                        c = c + 1
+
             except Exception as e:
                 print(e)
                 continue
 
 
-sort_faces("C:\\Users\\ashis\\Documents\\Py\\mera_photo\\test_images")
+# sort_faces("C:\\Users\\ashis\\Documents\\Py\\mera_photo\\test_images")
