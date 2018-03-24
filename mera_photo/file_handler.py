@@ -53,19 +53,3 @@ def get_directories(path):
     os.chdir(cwd)
 
     return folders
-
-
-def get_one_folder_up(path):
-    os.chdir(path)
-    up_folder = Path(__file__).parents[0]
-
-    # os.chdir(path)
-    # os.chdir("../")
-    # ind = path.rfind('\\')
-    # if str(ind) == "-1":
-    #     ind = path.rfind('/')
-    # images_folder = path[ind + 1::]
-    # up_folder = os.getcwd()
-    return up_folder
-
-# print(get_one_folder_up("test_images/images"))
