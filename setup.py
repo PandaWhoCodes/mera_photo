@@ -1,13 +1,12 @@
 """
-Stream any media content using console
+https://github.com/PandaWhoCodes/mera_photo/blob/master/README.md
 """
 from setuptools import setup
 
 dependencies = ['face_recognition', 'argparse']
-
 setup(
     name='mera_photo',
-    version='0.1.1',
+    version='0.1.4',
     url='https://github.com/PandaWhoCodes/mera_photo',
     license='MIT',
     author='Thomas Ashish Cherian',
