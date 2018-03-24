@@ -2,6 +2,8 @@
 All file handling functions.
 """
 import glob
+import os
+from pathlib import Path
 
 
 def get_test_image():
@@ -13,7 +15,14 @@ def get_test_image():
     return images[0]
 
 
-# print(get_test_image())
+def get_train_image(path):
+    """
+    returns the one training image in each folder
+    :return: image path
+    """
+    images = glob.glob(path + "/*.jpg")
+    return images[0]
+
 
 def get_images(path):
     """
@@ -21,6 +30,42 @@ def get_images(path):
     :param path: The folder in which we will check for images
     :return: An array of all images found
     """
-    images = glob.glob(path + "/**/**/*.jpg", recursive=True)
-    images.extend((glob.glob(path + "/**/**/*.png", recursive=True)))
+    path = path + "/images/IV/Camera"
+    images = glob.glob(path + "**/**/**/*.jpg", recursive=True)
+    images.extend((glob.glob(path + "**/**/**/*.png", recursive=True)))
     return images
+
+
+def get_directories(path):
+    """
+    Get directorty names of only the known faces
+    :param path: The path for all images provided by user
+    :return: list of folders - the images folder
+    """
+    folders = []
+    cwd = os.getcwd()
+    os.chdir(path)
+    images_folder = "images"
+    files = os.listdir(".")
+    for item in files:
+        if os.path.isdir(item) == True and item != images_folder:
+            folders.append(item)
+    os.chdir(cwd)
+
+    return folders
+
+
+def get_one_folder_up(path):
+    os.chdir(path)
+    up_folder = Path(__file__).parents[0]
+
+    # os.chdir(path)
+    # os.chdir("../")
+    # ind = path.rfind('\\')
+    # if str(ind) == "-1":
+    #     ind = path.rfind('/')
+    # images_folder = path[ind + 1::]
+    # up_folder = os.getcwd()
+    return up_folder
+
+# print(get_one_folder_up("test_images/images"))

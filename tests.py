@@ -146,6 +146,6 @@ def sort_faces(path):
             except:
                 continue
 
-sort_faces("test_images/images/IV/Camera")
+# sort_faces("test_images/images/IV/Camera")
 # single_image_detection()
 # run_detect_test()
