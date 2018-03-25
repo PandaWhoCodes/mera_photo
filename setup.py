@@ -6,7 +6,7 @@ from setuptools import setup
 dependencies = ['face_recognition', 'argparse','joblib']
 setup(
     name='mera_photo',
-    version='0.1.5',
+    version='0.1.6',
     url='https://github.com/PandaWhoCodes/mera_photo',
     license='MIT',
     author='Thomas Ashish Cherian',
