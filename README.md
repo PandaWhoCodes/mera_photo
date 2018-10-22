@@ -6,9 +6,6 @@ I recently purchased a new phone with a good camera, and within no time I had 10
 Now the redundant thing I did after each of our outing's was picking the images of my friends and sending it to them.
 So why not automate this entire process?
 
-## Enter SLAC
-A hanckathon called stay late and code, where I sat down and made this module.
-
 ## How to use
 
 `pip install mera_photo`
